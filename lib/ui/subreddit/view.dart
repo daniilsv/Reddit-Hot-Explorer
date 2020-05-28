@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:reddit_explorer/ui/submission/view.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
@@ -40,23 +41,14 @@ class SubredditView extends StatelessWidget {
           appBar: ScrollAppBar(
             backgroundColor: Colors.white,
             controller: model.scrollController, // Note the controller here
-            title: Row(
-              children: [
-                SvgPicture.asset(
-                  'assets/reddit.svg',
-                  fit: BoxFit.fitHeight,
-                  height: kToolbarHeight - 20,
-                ),
-                const SizedBox(width: 12),
-                Flexible(
-                  child: Text(
-                    subreddit.title,
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                ),
-              ],
+            title: Text(
+              subreddit.title,
+              style: const TextStyle(color: Colors.black),
             ),
-            automaticallyImplyLeading: false,
+            leading: const IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: Colors.deepOrange),
+              onPressed: Get.back,
+            ),
           ),
           bottomNavigationBar: ScrollBottomNavigationBar(
             controller: model.scrollController,
