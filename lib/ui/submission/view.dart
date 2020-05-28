@@ -2,10 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reddit_explorer/app/locator.dart';
-import 'package:scroll_app_bar/scroll_app_bar.dart';
-import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:supercharged/supercharged.dart';
@@ -64,15 +61,15 @@ class SubmissionView extends StatelessWidget {
                   const Icon(Icons.access_time),
                   Text(formatTime(submission.data['created_utc'] as double)),
                   const Spacer(),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(Icons.more_horiz),
-                    onPressed: () {
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
                       locator<DialogService>().showDialog(
                         title: 'Really Cool submission',
                         description: submission.title,
                       );
                     },
+                    child: const Icon(Icons.more_horiz),
                   ),
                   const SizedBox(width: 8),
                 ],

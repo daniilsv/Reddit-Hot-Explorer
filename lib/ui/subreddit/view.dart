@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:reddit_explorer/ui/submission/view.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
@@ -45,10 +44,10 @@ class SubredditView extends StatelessWidget {
               subreddit.title,
               style: const TextStyle(color: Colors.black),
             ),
-            leading: const IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.deepOrange),
-              onPressed: Get.back,
-            ),
+            // leading: const IconButton(
+            //   icon: Icon(Icons.arrow_back_ios, color: Colors.deepOrange),
+            //   onPressed: Get.back,
+            // ),
           ),
           bottomNavigationBar: ScrollBottomNavigationBar(
             controller: model.scrollController,

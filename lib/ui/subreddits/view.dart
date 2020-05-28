@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:reddit_explorer/ui/subreddit/view.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
@@ -25,6 +24,7 @@ class SubredditsView extends StatelessWidget {
           body = const Center(child: CircularProgressIndicator());
         else
           body = ListView.separated(
+            padding: const EdgeInsets.symmetric(vertical: 12),
             separatorBuilder: (c, i) => const Divider(),
             controller: model.scrollController,
             itemCount: model.data.length + (model.isBusy ? 1 : 0),
@@ -42,8 +42,11 @@ class SubredditsView extends StatelessWidget {
                   '${subreddit.data['display_name_prefixed'].toString()}'
                   '\n${subreddit.data['subscribers'].toString()} subs.',
                 ),
-                leading: buildLeading(context,
-                    subreddit.data['header_img'].toString(), color?.toColor()),
+                leading: buildLeading(
+                  context,
+                  subreddit.iconImage.toString(),
+                  color?.toColor(),
+                ),
                 onTap: () {
                   Get.to<void>(SubredditView(subreddit: subreddit));
                 },
@@ -54,13 +57,12 @@ class SubredditsView extends StatelessWidget {
           backgroundColor: '#DAE0E6'.toColor(),
           appBar: ScrollAppBar(
             backgroundColor: Colors.white,
-            controller: model.scrollController, // Note the controller here
+            controller: model.scrollController,
             title: Row(
               children: [
-                SvgPicture.asset(
-                  'assets/reddit.svg',
-                  fit: BoxFit.fitHeight,
-                  height: kToolbarHeight - 20,
+                const Text(
+                  'for reddit.com |',
+                  style: TextStyle(color: Colors.black),
                 ),
                 const SizedBox(width: 12),
                 const Flexible(
@@ -93,14 +95,15 @@ class SubredditsView extends StatelessWidget {
 
   Widget buildLeading(BuildContext context, String imageUrl, Color color) {
     if (imageUrl == '') return const SizedBox(width: 36, height: 36);
+    BoxDecoration decoration;
+    if (color != null)
+      decoration = BoxDecoration(
+        border: Border(bottom: BorderSide(color: color, width: 3)),
+      );
     return Container(
       width: 36,
       height: 36,
-      decoration: color == null
-          ? null
-          : BoxDecoration(
-              border: Border.all(color: color),
-            ),
+      decoration: decoration,
       padding: const EdgeInsets.all(2),
       child: CachedNetworkImage(
         imageUrl: imageUrl,
