@@ -7,18 +7,17 @@ import 'package:reddit_explorer/services/reddit.dart';
 class PostsService {
   final _redditService = locator.getAsync<RedditService>();
 
-  final List<Submission> _posts = [];
-  List<Submission> get posts => _posts;
-  String _after;
-  bool get hasPosts => _posts != null && _posts.isNotEmpty;
-
+  List<Submission> posts(String subreddit) => _posts[subreddit];
+  final Map<String, String> _after = {};
+  final Map<String, List<Submission>> _posts = {};
   Future<List<Submission>> getNextPosts(String subreddit) async {
     Reddit reddit = (await _redditService).reddit;
     Map<String, dynamic> value = await reddit.get('/${subreddit}hot', params: {
-      'after': _after,
+      'after': _after.containsKey(subreddit) ? _after[subreddit] : null,
     }) as Map<String, dynamic>;
-    _posts.addAll((value['listing'] as List).cast<Submission>());
-    _after = value['after'] as String;
-    return _posts;
+    if (!_posts.containsKey(subreddit)) _posts[subreddit] = [];
+    _posts[subreddit].addAll((value['listing'] as List).cast<Submission>());
+    _after[subreddit] = value['after'] as String;
+    return _posts[subreddit];
   }
 }
