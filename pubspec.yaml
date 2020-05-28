@@ -20,6 +20,8 @@ dependencies:
   dio:
   chopper:
   supercharged:
+  chewie:
+  video_player:
   scroll_app_bar:
   scroll_bottom_navigation_bar:
 
