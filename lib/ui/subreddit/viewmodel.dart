@@ -16,10 +16,8 @@ class PostsViewModel extends BaseViewModel {
   final Subreddit subreddit;
   final ScrollController scrollController;
   final _postsService = locator<PostsService>();
-  List<Submission> data = [];
+  List<Submission> get data => _postsService.posts(subreddit.path);
   Future<void> loadNext() async {
-    setBusy(true);
-    data = await _postsService.getNextPosts(subreddit.path);
-    setBusy(false);
+    await runBusyFuture(_postsService.getNextPosts(subreddit.path));
   }
 }

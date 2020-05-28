@@ -7,7 +7,7 @@ import 'package:reddit_explorer/services/reddit.dart';
 class PostsService {
   final _redditService = locator.getAsync<RedditService>();
 
-  List<Submission> posts(String subreddit) => _posts[subreddit];
+  List<Submission> posts(String subreddit) => _posts[subreddit] ?? [];
   final Map<String, String> _after = {};
   final Map<String, List<Submission>> _posts = {};
   Future<List<Submission>> getNextPosts(String subreddit) async {
