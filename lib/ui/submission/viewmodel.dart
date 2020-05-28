@@ -18,7 +18,6 @@ class SubmissionViewModel extends BaseViewModel {
         looping: true,
         autoInitialize: true,
       );
-      videoPlayerController.initialize();
     }
   }
   @override
