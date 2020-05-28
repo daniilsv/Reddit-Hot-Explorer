@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:reddit_explorer/ui/submission/view.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
 import 'package:stacked/stacked.dart';
@@ -23,8 +24,7 @@ class SubredditView extends StatelessWidget {
         if (model.data.isEmpty && model.isBusy)
           body = const Center(child: CircularProgressIndicator());
         else
-          body = ListView.separated(
-            separatorBuilder: (c, i) => const Divider(),
+          body = ListView.builder(
             controller: model.scrollController,
             itemCount: model.data.length + (model.isBusy ? 1 : 0),
             itemBuilder: (context, index) {
@@ -32,18 +32,7 @@ class SubredditView extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
 
               Submission submission = model.data[index];
-              // String color = submission.data['primary_color'].toString();
-              // if (color == '') color = null;
-
-              return ListTile(
-                title: Text(submission.title),
-                // subtitle: Text(
-                //   '${submission.data['display_name_prefixed'].toString()}'
-                //   '\n${submission.data['subscribers'].toString()} subs.',
-                // ),
-                leading: buildLeading(
-                    context, submission.data['thumbnail'].toString()),
-              );
+              return SubmissionView(submission: submission);
             },
           );
         return Scaffold(
