@@ -1,7 +1,4 @@
 import 'package:draw/draw.dart';
-import 'package:flutter/widgets.dart';
-import 'package:reddit_explorer/app/locator.dart';
-import 'package:reddit_explorer/services/posts_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';

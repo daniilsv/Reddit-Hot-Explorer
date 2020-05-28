@@ -79,9 +79,13 @@ class SubredditsView extends StatelessWidget {
             controller: model.scrollController,
             items: <BottomNavigationBarItem>[
               const BottomNavigationBarItem(
-                  icon: Icon(Icons.ac_unit), title: Text('')),
+                icon: Icon(Icons.fiber_new),
+                title: Text('New'),
+              ),
               const BottomNavigationBarItem(
-                  icon: Icon(Icons.access_alarms), title: Text('')),
+                icon: Icon(Icons.show_chart),
+                title: Text('Hot'),
+              ),
             ],
           ),
           body: Snap(

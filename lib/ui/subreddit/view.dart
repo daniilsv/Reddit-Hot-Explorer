@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:reddit_explorer/ui/submission/view.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
@@ -44,18 +42,18 @@ class SubredditView extends StatelessWidget {
               subreddit.title,
               style: const TextStyle(color: Colors.black),
             ),
-            // leading: const IconButton(
-            //   icon: Icon(Icons.arrow_back_ios, color: Colors.deepOrange),
-            //   onPressed: Get.back,
-            // ),
           ),
           bottomNavigationBar: ScrollBottomNavigationBar(
             controller: model.scrollController,
             items: <BottomNavigationBarItem>[
               const BottomNavigationBarItem(
-                  icon: Icon(Icons.ac_unit), title: Text('')),
+                icon: Icon(Icons.fiber_new),
+                title: Text('New'),
+              ),
               const BottomNavigationBarItem(
-                  icon: Icon(Icons.access_alarms), title: Text('')),
+                icon: Icon(Icons.show_chart),
+                title: Text('Hot'),
+              ),
             ],
           ),
           body: Snap(
@@ -64,20 +62,6 @@ class SubredditView extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget buildLeading(BuildContext context, String imageUrl) {
-    if (imageUrl == '') return const SizedBox(width: 36, height: 36);
-    return Container(
-      width: 36,
-      height: 36,
-      padding: const EdgeInsets.all(2),
-      child: CachedNetworkImage(
-        imageUrl: imageUrl,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
-      ),
     );
   }
 }

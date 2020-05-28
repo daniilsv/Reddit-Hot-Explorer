@@ -18,7 +18,7 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerLazySingleton<NavigationService>(
       () => thirdPartyServicesModule.navigationService);
   g.registerLazySingleton<PostsService>(() => PostsService());
-  g.registerLazySingletonAsync<RedditService>(() => RedditService.create());
+  g.registerLazySingletonAsync<RedditService>(RedditService.create);
   g.registerLazySingleton<SubredditsService>(() => SubredditsService());
 }
 
