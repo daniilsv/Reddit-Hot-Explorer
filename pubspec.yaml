@@ -1,0 +1,37 @@
+name: reddit_explorer
+description: My Reddit Diary
+publish_to: none
+version: 0.0.1+1
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  stacked:
+  stacked_services:
+  get:
+  get_it:
+  flutter_svg:
+  draw:
+  cached_network_image:
+  shimmer:
+  page_transition:
+  logger:
+  dio:
+  chopper:
+  supercharged:
+  scroll_app_bar:
+  scroll_bottom_navigation_bar:
+
+dev_dependencies:
+  pedantic:
+  build_runner:
+  chopper_generator:
+  injectable_generator:
+  build_config:
+  build:
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/reddit.svg
